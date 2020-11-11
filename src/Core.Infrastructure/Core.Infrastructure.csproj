@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Core.Application\Core.Application.csproj" />
+      <ProjectReference Include="..\Core.Modules.EF.Infrastructure\Core.Modules.EF.Infrastructure.csproj" />
+      <ProjectReference Include="..\Core.Persistence\Core.Persistence.csproj" />
+      <PackageReference Include="Google.Protobuf" Version="3.13.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.32.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    
+
+    <ItemGroup>
+      <PackageReference Include="Grpc.Net.Client" Version="2.31.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="../Identity.API/Protos/UserService.proto" GrpcServices="Client" />
+    </ItemGroup>
+</Project>

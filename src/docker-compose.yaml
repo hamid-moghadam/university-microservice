@@ -1,0 +1,61 @@
+version: '3.4'
+
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: OcelotGateway/Dockerfile
+    ports:
+      - "3000:80"
+  core-api:
+    environment:
+      - Rabbitmq_Host=rabbitmq
+      - Rabbitmq_Username=admin
+      - Rabbitmq_Password=nimda
+      - Identity_Url=http://identity-api:80
+      - UserGrpc=http://identity-api:81
+      - ConnectionString=Server=postgres;Port=5432;Database=Core;User Id=postgres;Password=postgres;
+    build:
+      context: .
+      dockerfile: Core.API/Dockerfile
+    ports:
+      - "3001:80"
+      - "5001:81"
+  identity-api:
+    environment:
+      - ConnectionString=Server=postgres;Port=5432;Database=Identity;User Id=postgres;Password=postgres;
+    build:
+      context: .
+      dockerfile: Identity.API/Dockerfile
+    ports:
+      - "3002:80"
+  curriculum-api:
+    environment:
+      - Rabbitmq_Host=rabbitmq
+      - Rabbitmq_Username=admin
+      - Rabbitmq_Password=nimda
+      - Identity_Url=http://identity-api:80
+      - ConnectionString=Server=postgres;Port=5432;Database=Curriculum;User Id=postgres;Password=postgres;
+      - CoreGrpc=http://core-api:81
+    build:
+      context: .
+      dockerfile: Curriculum.API/Dockerfile
+    ports:
+      - "3003:80"
+  aggregator:
+    environment:
+      - Rabbitmq_Host=rabbitmq
+      - Rabbitmq_Username=admin
+      - Rabbitmq_Password=nimda
+      - Identity_Url=http://identity-api:80
+      - CurriculumGrpc=http://curriculum-api:81
+      - CoreGrpc=http://core-api:81
+    build:
+      context: .
+      dockerfile: HttpAggregator/Dockerfile
+    depends_on:
+      - identity-api
+      - core-api
+      - curriculum-api
+    ports:
+      - "3004:80"

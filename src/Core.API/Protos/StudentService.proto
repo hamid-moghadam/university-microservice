@@ -1,0 +1,40 @@
+﻿syntax = "proto3";
+option csharp_namespace = "Grpc.Core";
+package CoreAPI;
+service StudentService
+{
+  rpc GetInfo (StudentInfoRequest) returns (StudentInfoReply);
+  rpc GetSemesterStatus (SemesterStatusRequest) returns (SemesterStatusResponse);
+}
+message StudentInfoRequest
+{
+  string UserId = 1;
+}
+
+message SemesterStatusRequest
+{
+  int32 CurriculumId = 1;
+  int32 StudentId = 2;
+}
+
+message SemesterStatusResponse
+{
+  bool CanTakeCurriculums = 1;
+  bool IsCurriculumSemesterValid = 2;
+}
+
+message StudentInfoReply
+{
+  int32 Id = 1;
+  string CreateTime = 2;
+  string Code = 3;
+  string UserId = 4;
+  string FullName = 5;
+  string FieldTitle = 6;
+  int32 CurrentSemesterId = 7;
+  string CurrentSemesterTitle = 8;
+  bool CanTakeCurriculums = 9;
+  string StartCurriculumScheduleDateTime = 10;
+  string EndCurriculumScheduleDateTime = 11;
+  int32 FieldId = 12;
+}

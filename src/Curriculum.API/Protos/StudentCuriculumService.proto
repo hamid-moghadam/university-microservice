@@ -1,0 +1,16 @@
+﻿syntax = "proto3";
+option csharp_namespace = "Grpc.Curriculum";
+package CurriculumAPI;
+service StudentCurriculumService
+{
+  rpc GetOverview (OverviewRequest) returns (OverviewReply);
+}
+message OverviewRequest
+{
+  string UserId = 1;
+  int32 SemesterId = 2;
+}
+message OverviewReply
+{
+  int32 TotalCount = 1;
+}

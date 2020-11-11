@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Core.Domain\Core.Domain.csproj" />
+      <ProjectReference Include="..\Core.Events\Core.Events.csproj" />
+      <ProjectReference Include="..\Core.Modules.EF.Abstraction\Core.Modules.EF.Abstraction.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="10.0.0" />
+      <PackageReference Include="Kasp.FormBuilder" Version="0.5.28" />
+      <PackageReference Include="Kasp.HttpException.Core" Version="0.5.28" />
+      <PackageReference Include="FluentValidation" Version="9.2.0" />
+    </ItemGroup>
+
+</Project>

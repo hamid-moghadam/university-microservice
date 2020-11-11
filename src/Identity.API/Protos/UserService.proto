@@ -1,0 +1,59 @@
+﻿syntax = "proto3";
+option csharp_namespace = "Grpc.Identity";
+package IdentityAPI;
+service UserService
+{
+  rpc Get (UserInformationRequest) returns (UserInformationReply);
+  rpc Create (UserCreateRequest) returns (UserCreateReply);
+  rpc Update (UserUpdateRequest) returns (UserCreateReply);
+  rpc Remove (UserInformationRequest) returns (UserRemoveReply);
+}
+message UserInformationRequest
+{
+  string userId = 1;
+}
+
+message UserRemoveReply
+{
+  bool Success = 1;
+}
+message UserInformationReply
+{
+  string NationalCode = 1;
+  string FirstName = 2;
+  string LastName = 3;
+  bool Enable = 4;
+  string Username = 5;
+  string Email = 6;
+  string PhoneNumber = 7;
+}
+
+message UserCreateRequest
+{
+  string NationalCode = 1;
+  string FirstName = 2;
+  string LastName = 3;
+  string Username = 5;
+  string Email = 6;
+  string PhoneNumber = 7;
+}
+message UserCreateReply
+{
+  string Id = 1;
+  string NationalCode = 2;
+  string FirstName = 3;
+  string LastName = 4;
+  string Enable = 5;
+  string Username = 6;
+  string Email = 7;
+  string PhoneNumber = 8;
+  bool Success = 9;
+  string ErrorDescription = 10;
+}
+message UserUpdateRequest
+{
+  string NationalCode = 1;
+  string FirstName = 2;
+  string LastName = 3;
+  string Id = 4;
+}

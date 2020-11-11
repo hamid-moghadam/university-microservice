@@ -1,0 +1,119 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/c/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "core-api",
+          "Port": 80
+        }
+      ],
+      "Priority": 0,
+      "UpstreamPathTemplate": "/c/{everything}"
+    },
+    {
+      "DownstreamPathTemplate": "/swagger/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "core-api",
+          "Port": 80
+        }
+      ],
+      "Priority": 1,
+      "UpstreamPathTemplate": "/c/swagger/{everything}"
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/i/{everything}"
+    },
+    {
+      "DownstreamPathTemplate": "/a/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "aggregator",
+          "Port": 80
+        }
+      ],
+      "Priority": 0,
+      "UpstreamPathTemplate": "/a/{everything}"
+    },
+    {
+      "DownstreamPathTemplate": "/swagger/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "aggregator",
+          "Port": 80
+        }
+      ],
+      "Priority": 1,
+      "UpstreamPathTemplate": "/a/swagger/{everything}"
+    },
+    {
+      "DownstreamPathTemplate": "/sc/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "curriculum-api",
+          "Port": 80
+        }
+      ],
+      "Priority": 0,
+      "UpstreamPathTemplate": "/sc/{everything}"
+    },
+    {
+      "DownstreamPathTemplate": "/swagger/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "curriculum-api",
+          "Port": 80
+        }
+      ],
+      "Priority": 1,
+      "UpstreamPathTemplate": "/sc/swagger/{everything}"
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "aggregator",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/{everything}"
+    },
+    {
+      "DownstreamPathTemplate": "/hubs/{catchAll}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "curriculum-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/hubs/{catchAll}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:3000"
+  }
+}

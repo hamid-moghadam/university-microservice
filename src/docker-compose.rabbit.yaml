@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.8.8-management-alpine
+    hostname: my-rabbit
+    volumes:
+      - ../deploy/rabbitmq/etc/definitions.json:/etc/rabbitmq/definitions.json
+      - ../deploy/rabbitmq/etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ../deploy/rabbitmq/data:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit
+      - ../deploy/rabbitmq/logs:/var/log/rabbitmq/log
+    ports:
+      - "5672:5672"
+      - "15672:15672"
